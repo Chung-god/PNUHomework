@@ -30,36 +30,54 @@ int main()
 
 void visit(int x, int y,int cnt)
 {
+	cout << "cnt : " << cnt << endl;
 	map[x][y] = 2;      // 지나간 위치를 표시
 	printf("(%d,%d) ", x, y);
 
-	if (x == 3 && y == 1 && cnt == 8 ) {//카운터는 전체 수 - 1
-		// 최종 도착지점
-		success += 1;
-		cout << "찾음!!!!!!!!!!!!!!!!!!!!!!" << endl << endl;
-		map[x][y] = 0;
-		return;
+	if (x == 3 && y == 1 ) {//카운터는 전체 수 - 1
+		if (cnt == 8) {
+			// 최종 도착지점
+			success += 1;
+			cout << "찾음!!!!!!!!!!!!!!!!!!!!!!" << endl << endl;
+			map[x][y] = 0;
+			return;
+		}
+		else {
+			cout << "수 부족 : " << cnt << endl;
+			map[x][y] = 0;
+			return;
+		}
 	}
-	if (map[x][y + 1] == 0)//R
-		visit(x, y + 1,cnt+1);
+	if (map[x][y + 1] == 0) {
+		cout << "R ";
+		visit(x, y + 1, cnt + 1);
+	}
 	else {
+	
 		if (map[x - 1][y + 1] == 0 && map[x + 1][y + 1] == 0) return;
 	}
-	if (map[x + 1][y] == 0)//D
-		visit(x + 1, y,cnt+1);
+
+	if (map[x + 1][y] == 0) {
+		visit(x + 1, y, cnt + 1);
+	}
 	else {
 		if (map[x + 1][y - 1] == 0 && map[x + 1][y + 1] == 0) return;
 	}
-	if (map[x][y - 1] == 0)
-		visit(x, y - 1,cnt+1);
+
+	if (map[x][y - 1] == 0) {
+		visit(x, y - 1, cnt + 1);
+	}
 	else {
 		if (map[x + 1][y - 1] == 0 && map[x - 1][y - 1] == 0) return;
 	}
-	if (map[x - 1][y] == 0)
-		visit(x - 1, y,cnt+1);
+
+	if (map[x - 1][y] == 0) {
+		visit(x - 1, y, cnt + 1);
+	}
 	else {
 		if (map[x - 1][y - 1] == 0 && map[x - 1][y + 1] == 0) return;
 	}
+
 
 	map[x][y] = 0; //회귀  
 }
