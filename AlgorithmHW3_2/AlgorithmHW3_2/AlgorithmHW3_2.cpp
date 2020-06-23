@@ -53,29 +53,43 @@ void visit(int x, int y,int cnt)
 		visit(x, y + 1, cnt + 1);
 	}
 	else {
-	
-		if (map[x - 1][y + 1] == 0 && map[x + 1][y + 1] == 0) return;
+		if (map[x - 1][y + 1] == 0 && map[x + 1][y + 1] == 0) {
+			cout << "오른쪽 벽 공간생김\n";
+			return;
+		}
 	}
 
 	if (map[x + 1][y] == 0) {
+		cout << "D ";
 		visit(x + 1, y, cnt + 1);
 	}
 	else {
-		if (map[x + 1][y - 1] == 0 && map[x + 1][y + 1] == 0) return;
+		if (map[x + 1][y - 1] == 0 && map[x + 1][y + 1] == 0) {
+			cout << "위쪽 벽 공간\n";
+			return;
+		}
 	}
 
 	if (map[x][y - 1] == 0) {
+		cout << "L ";
 		visit(x, y - 1, cnt + 1);
 	}
 	else {
-		if (map[x + 1][y - 1] == 0 && map[x - 1][y - 1] == 0) return;
+		if (map[x + 1][y - 1] == 0 && map[x - 1][y - 1] == 0) {
+			cout << "왼쪽 벽 공간생김\n";
+			return;
+		}
 	}
 
 	if (map[x - 1][y] == 0) {
+		cout << "U ";
 		visit(x - 1, y, cnt + 1);
 	}
 	else {
-		if (map[x - 1][y - 1] == 0 && map[x - 1][y + 1] == 0) return;
+		if (map[x - 1][y - 1] == 0 && map[x - 1][y + 1] == 0) {
+			cout << "위쪽 벽 공간생김\n";
+			return;
+		}
 	}
 
 
