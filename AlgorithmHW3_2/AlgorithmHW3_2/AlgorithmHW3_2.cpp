@@ -53,8 +53,9 @@ void visit(int x, int y,int cnt)
 		visit(x, y + 1, cnt + 1);
 	}
 	else {
-		if (map[x - 1][y + 1] == 0 && map[x + 1][y + 1] == 0) {
+		if (map[x - 1][y] == 0 && map[x + 1][y] == 0) {
 			cout << "오른쪽 벽 공간생김\n";
+			map[x][y] = 0;
 			return;
 		}
 	}
@@ -64,8 +65,10 @@ void visit(int x, int y,int cnt)
 		visit(x + 1, y, cnt + 1);
 	}
 	else {
-		if (map[x + 1][y - 1] == 0 && map[x + 1][y + 1] == 0) {
+		if (map[x][y - 1] == 0 && map[x][y + 1] == 0) {
+			printf("(%d,%d) (%d,%d)\n", x, y - 1, x, y + 1);
 			cout << "위쪽 벽 공간\n";
+			map[x][y] = 0;
 			return;
 		}
 	}
@@ -75,8 +78,10 @@ void visit(int x, int y,int cnt)
 		visit(x, y - 1, cnt + 1);
 	}
 	else {
-		if (map[x + 1][y - 1] == 0 && map[x - 1][y - 1] == 0) {
+		if (map[x + 1][y] == 0 && map[x - 1][y] == 0) {
+			printf("\n(%d,%d) (%d,%d)\n", x+1, y , x-1, y);
 			cout << "왼쪽 벽 공간생김\n";
+			map[x][y] = 0;
 			return;
 		}
 	}
@@ -86,8 +91,9 @@ void visit(int x, int y,int cnt)
 		visit(x - 1, y, cnt + 1);
 	}
 	else {
-		if (map[x - 1][y - 1] == 0 && map[x - 1][y + 1] == 0) {
+		if (map[x][y - 1] == 0 && map[x][y + 1] == 0) {
 			cout << "위쪽 벽 공간생김\n";
+			map[x][y] = 0;
 			return;
 		}
 	}
